@@ -9,7 +9,7 @@ import (
 )
 
 // Register func is responsible for registering a new user.
-func (s *UserService) Register(ctx context.Context, nickname, email, password string) (*models.User, error) {
+func (s *UserService) Register(ctx context.Context, email, nickname, password string) (*models.User, error) {
 	// checking if email/nickname already exists
 	if existingUser, _ := s.repo.GetByEmail(ctx, email); existingUser != nil {
 		return nil, fmt.Errorf("user with email %s already exists", email)
