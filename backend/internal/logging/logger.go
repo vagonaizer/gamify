@@ -49,7 +49,6 @@ func parseLevel(level string) zapcore.Level {
 	return lvl
 }
 
-// Кастомный энкодер для уровней
 func customLevelEncoder(l zapcore.Level, enc zapcore.PrimitiveArrayEncoder) {
 	var emoji string
 	switch l {
@@ -66,10 +65,9 @@ func customLevelEncoder(l zapcore.Level, enc zapcore.PrimitiveArrayEncoder) {
 	default:
 		emoji = "🔷 UNKWN"
 	}
-	enc.AppendString(fmt.Sprintf("%-2s", emoji)) // Меньше расстояния, чтобы выровнять
+	enc.AppendString(fmt.Sprintf("%-2s", emoji))
 }
 
-// Кастомный энкодер для caller
 func customCallerEncoder(c zapcore.EntryCaller, enc zapcore.PrimitiveArrayEncoder) {
-	enc.AppendString(fmt.Sprintf("📍 %-2s", c.TrimmedPath())) // Выравнивание пути
+	enc.AppendString(fmt.Sprintf("📍 %-2s", c.TrimmedPath()))
 }
